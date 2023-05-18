@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>02_survletdata</display-name>
+  <!-- 서버의 web.xml에도 존재하기 때문에 지워도 상관없음
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  -->
+  <!-- 생성한 서블릿 등록
+  	<servlet>태그를 이용해서 생성한 서블릿 클래스를 등록한다.
+  	<servlet>태그의 자식으로 두가지 태그가 있다. 
+  		<servlet-name> : 서버 내에서 서블릿 클래스의 이름을 지칭한다. 중복되면 안 된다.
+  		<servlet-class> : 패키지명까지 모두 작성해서 클래스를 등록한다.
+   -->
+   <servlet>
+   		<servlet-name>basicservlet</servlet-name>
+   		<servlet-class>com.servlet.controller.BasicServletController</servlet-class>
+   </servlet>
+   
+   <!-- 
+   	등록된 서블릿을 실행할 url주소를 매핑
+   	<servlet-mapping>태그를 이용한다.
+   		<servlet-name> : 연결할 서블릿 이름을 작성한다.
+   		<url-pattern> : 매핑할 주소를 작성한다. 주소 작성 시에는 반드시 /로 시작해야한다.
+    -->
+    <servlet-mapping>
+    	<servlet-name>basicservlet</servlet-name>
+    	<url-pattern>/basicrequest.do</url-pattern>
+    </servlet-mapping>
+</web-app>

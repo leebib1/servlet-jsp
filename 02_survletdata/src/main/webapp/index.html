@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>survlet 다루기</title>
+</head>
+<body>
+	<h2>서블릿 객체 이용</h2>
+	<h4>클라이언트 요청 응답하기</h4>
+	<h5><a href="/02_survletdata/basicrequest.do">서블릿으로 기본 요청 처리하기</a></h5>
+	<!-- /앞에는 이미 서버가 관리하고 있기 때문에 서버주소:포트번호가 생략되어있는 상태 -->
+	<p>
+		<!-- 같은 주소를 실행해도 데이터 전송 방식에 따라 다른 메소드가 실행된다. -->
+		<form action="/02_survletdata/basicrequest.do" method="post">
+			<input type="submit" value="전송">
+		</form>
+	</p>
+</body>
+</html>
