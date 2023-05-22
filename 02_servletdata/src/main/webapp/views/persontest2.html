@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>당신의 개인 취향 테스트</h3>
+	<p>당신의 취향을 테스트해봐요</p>
+	<form action="/02_servletdata/requestdispatchertest.do">
+		<ul>
+			<li><label>이름 <input type="text" name="name"></label></li>
+			<li><label>나이 <input type="number" min="0" name="age"></label></li>
+			<li><label>키 <input type="text" name="height"></label></li>
+			<li>좋아하는 색 
+				<label><input type="radio" name="color" value="red">빨강</label>
+				<label><input type="radio" name="color" value="orange">주황</label>
+				<label><input type="radio" name="color" value="yellow">노랑</label>
+				<label><input type="radio" name="color" value="green">초록</label>
+				<label><input type="radio" name="color" value="blue">파랑</label>
+				<label><input type="radio" name="color" value="navy">남색</label>
+			</li>
+			<li>좋아하는 동물 
+				<label><input type="checkbox" name="animal" value="강아지">강아지</label>
+				<label><input type="checkbox" name="animal" value="고양이">고양이</label>
+				<label><input type="checkbox" name="animal" value="펭귄">펭귄</label>
+				<label><input type="checkbox" name="animal" value="기린">기린</label>
+				<label><input type="checkbox" name="animal" value="라쿤">라쿤</label>
+				<label><input type="checkbox" name="animal" value="토끼">토끼</label>
+			</li>
+			<li>점심메뉴
+				<select name="lunch">
+					<option value="마라탕">마라탕</option>
+					<option value="샤브샤브">샤브샤브</option>
+					<option value="김치찌개">김치찌개</option>
+					<option value="훠궈">훠궈</option>
+					<option value="햄부기">햄부기</option>
+				</select>
+			</li>
+			<li>
+				<textarea rows="10" cols="50" name="info"></textarea>
+			</li>
+		</ul>
+		<input type="submit" value="제출">
+		<input type="reset" value="취소">
+	</form>
+</body>
+</html>
