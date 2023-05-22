@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>02_servletdata</display-name>
+  <servlet>
+    <servlet-name>basicservlet</servlet-name>
+    <servlet-class>com.servlet.controller.BasicServletController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>basicservlet</servlet-name>
+    <url-pattern>/basicrequest.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>basicdata</servlet-name>
+    <servlet-class>com.servlet.controller.BasicDataServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>basicdata</servlet-name>
+    <url-pattern>/basicdata.do</url-pattern>
+  </servlet-mapping>
+</web-app>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>survlet 다루기</title>
+</head>
+<body>
+	<h2>서블릿 객체 이용</h2>
+	<h4>클라이언트 요청 응답하기</h4>
+	<h5><a href="/02_survletdata/basicrequest.do">서블릿으로 기본 요청 처리하기</a></h5>
+	<!-- /앞에는 이미 서버가 관리하고 있기 때문에 서버주소:포트번호가 생략되어있는 상태 -->
+	<p>
+		<!-- 같은 주소를 실행해도 데이터 전송 방식에 따라 다른 메소드가 실행된다. -->
+		<form action="/02_survletdata/basicrequest.do" method="post">
+			<input type="submit" value="전송">
+		</form>
+	</p>
+	
+	<h2>클라이언트가 보낸 데이터 처리하기</h2>
+	<p>
+		클라이언트가 보낸 데이터는 HTTPServletRequest객체를 이용해서 서버에서 가져올 수 있다.
+	</p>
+	<h3><a href="/02_servletdata/basicdata.do?testdata=test">querystring으로 보낸 데이터 확인</a></h3>
+	<form action="/02_servletdata/basicdata.do">
+		<input type="text" name="testdata">
+		<input type="submit" value="데이터 전송">
+	</form>
+	
+	<h2>클라이언트가 보낸 데이터 처리하기2</h2>
+	<h3>
+		<a href="/02_servletdata/views/persontest.html">개인 취향 테스트</a>
+	</h3>
+	
+	<h2>회원가입 데이터 받기</h2>
+	<h3><a href="/02_servletdata/views/enrollMember.html">회원가입 데이터</a></h3>
+</body>
+</html>
