@@ -9,4 +9,5 @@
   	<servlet-name>myrequest</servlet-name>
   	<url-pattern>/myrequest.do</url-pattern>
   </servlet-mapping>
+  
 </web-app>
