@@ -6,11 +6,11 @@
 </head>
 <body>
     <h2>회원가입 데이터</h2>
-    <form action="/02_servletdata/enrollMember.do">
+    <form action="/02_servletdata/enrollMember.do" method="post">
         <p>아이디 <input type="text" name="userid"></p>
         <p>비밀번호 <input type="password" name="password"></p>
         <p>이름 <input type="text" name="userName"></p>
-        <p>닉네임 <input type="text" name="name"></p>
+        <p>닉네임 <input type="text" name="nickName"></p>
         <p>이메일 <input type="email" name="email"></p>
         <p>
             취미<br>
@@ -22,7 +22,7 @@
         <p>
             혼인여부<br>
             <input type="radio" name="marry" value="미혼">미혼
-            <input type="radio" name="marry" value="결혼">결혼
+            <input type="radio" name="marry" value="결혼">기혼
         </p>
         <textarea name="info" cols="30" rows="10" placeholder="자기소개 입력하세요"></textarea>
         <input type="submit" value="제출">
