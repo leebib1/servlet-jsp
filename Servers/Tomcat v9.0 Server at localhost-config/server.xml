@@ -162,7 +162,7 @@
 
       <Context docBase="01_firstweb" path="/01_firstweb" reloadable="true" source="org.eclipse.jst.jee.server:01_firstweb"/>
       <Context docBase="myproject" path="/myproject" reloadable="true" source="org.eclipse.jst.jee.server:myproject"/>
-      <Context docBase="02_servletdata" path="/02_servletdata" reloadable="true" source="org.eclipse.jst.jee.server:02_servletdata"/></Host>
+      <Context docBase="02_servletdata" path="/02_servletdata" reloadable="true" source="org.eclipse.jst.jee.server:02_servletdata"/><Context docBase="03_filter_listener" path="/03_filter_listener" reloadable="true" source="org.eclipse.jst.jee.server:03_filter_listener"/><Context docBase="04_cookies_session" path="/04_cookies_session" reloadable="true" source="org.eclipse.jst.jee.server:04_cookies_session"/></Host>
     </Engine>
   </Service>
 </Server>

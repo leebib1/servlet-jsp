@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>필터 활용하기</title>
+</head>
+<body>
+	<h2>필터 적용하기</h2>
+	<p>
+		클라이언트가 보낸 요청에 대해 검토하는 기능<br>
+		예)이용 권한 확인, 로그인 여부 확인, 인코딩 처리, 필요 log 출력<br>
+		서블릿(서비스 객체) 이용 시 필요한 공통 로직을 설정하는 객체이다.<br>
+	</p>
+	<p>
+		필터 구현<br>
+		1. 일반 클래스 생성하고 javax 패키지의 Filter 인터페이스를 구현한다.<br>
+		2. 생성한 클래스를 filter로 등록한다.<br>
+			2-1. web.xml 방식<br>
+			2-2. 어노테이션 방식<br>
+		3. 등록된 필터 클래스를 어디에 적용할지 설정한다.<br>
+			3-1. url pattern으로 설정<br>
+			3-2. servletName으로 설정<br>
+	</p>
+	<p>
+		doFilter 메소드를 재정의(오버라이딩)해서 공통의 로직을 구현한다.<br>
+		doFilter 메소드는 세 개의 매개변수를 갖는다.<br>
+		1. ServletRequest : HttpServletRequest의 부모로 request가 제공하는 메소드를 가지고 있다.<br>
+		HttpServletRequest로 형변환이 가능하다. ServletRequest는 Session객체가 없기 때문에 HttpServletRequest객체를 이용한다.<br>
+		2. ServletResponse : HttpServletResponse의 부모로 response에서 제공하는 메소드를 가지고 있다.<br>
+		HttpServletResponse로 형변환 해서 사용 가능하다<br>
+		3. FilterChain : 다른 필터 또는 연결된 서블릿을 가지고 있는 객체로 다음 필터 또는 서블릿을 호출할 때 사용한다.<br>
+		doFilter() 메소드 호출<br>
+	</p>
+	
+	<h3>필터 적용하기</h3>
+	<h2><a href="/03_filter_listener/basicfilter.do">기본 필터 적용하기</a></h2>
+	<h2><a href="/03_filter_listener/admin/membermanager.do">회원관리</a></h2>
+	
+	<form action="/03_filter_listener/data.do" method="post">
+		<input type="text" name="data">
+		<input type="submit" value="데이터 전송">
+	</form>
+	
+</body>
+</html>
