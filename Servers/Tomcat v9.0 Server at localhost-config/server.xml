@@ -162,7 +162,7 @@
 
       
       
-      <Context docBase="05_jsp" path="/05_jsp" reloadable="true" source="org.eclipse.jst.jee.server:05_jsp"/></Host>
+      <Context docBase="06_HelloMVC" path="/06_HelloMVC" reloadable="true" source="org.eclipse.jst.jee.server:06_HelloMVC"/></Host>
     </Engine>
   </Service>
 </Server>

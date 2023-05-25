@@ -137,5 +137,7 @@
     <h3>에러 페이지 설정하기</h3>
     <h3><a href="<%=request.getContextPath()%>/views/errortest.jsp">JSP 에러페이지</a></h3>
     <h3><a href="<%=request.getContextPath()%>/errorServlet.do">서블릿 에러페이지</a></h3>
+    
+    <h3><a href="<%=request.getContextPath() %>/memberAll.do">회원 정보 조회</a></h3>
 </body>
 </html>
