@@ -32,4 +32,22 @@ public class MemberService {
 		close(conn);
 		return m;
 	}
+
+	public int updateMember(Member m) {
+		Connection conn=getConnection();
+		int result=dao.updateMember(conn, m);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	public int updatePassword(String userId, String newPwd) {
+		Connection conn=getConnection();
+		int result=dao.updatePassword(conn, userId, newPwd);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 }

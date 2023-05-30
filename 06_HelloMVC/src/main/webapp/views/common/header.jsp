@@ -49,7 +49,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td><input type="button" value="내 정보"></td>
+				<td><input type="button" value="내 정보" 
+					onclick="location.assign('<%=request.getContextPath()%>/member/memberView.do?userId=<%=loginMember.getUserId()%>')"></td>
 				<td>
 					<%-- <form action="<%=request.getContextPath()%>/logout.do"> --%>
 						<input type="button" value="로그아웃" onclick="location.replace('<%=request.getContextPath()%>/logout.do')">
