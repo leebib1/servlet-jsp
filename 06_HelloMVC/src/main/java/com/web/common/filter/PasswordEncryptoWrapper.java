@@ -17,9 +17,9 @@ public class PasswordEncryptoWrapper extends HttpServletRequestWrapper{
 	public String getParameter(String key) {
 		if(key.equals("password")) {
 			//암호화처리 로직
-			System.out.println("원본 : "+super.getParameter(key));
+//			System.out.println("원본 : "+super.getParameter(key));
 			String encryptData=getSHA512(super.getParameter(key));
-			System.out.println("암호화 : "+encryptData);
+//			System.out.println("암호화 : "+encryptData);
 			return encryptData;
 		}
 		return super.getParameter(key);

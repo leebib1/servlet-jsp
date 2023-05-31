@@ -37,7 +37,7 @@ public class MemberLoginServlet extends HttpServlet {
 		//아이디 정보 저장
 		//체크박스를 가져오면 체크되면 on, 아니면 null을 반환
 		String saveId=request.getParameter("saveId");
-		System.out.println(saveId);
+//		System.out.println(saveId);
 		if(saveId!=null) {
 			Cookie c=new Cookie("saveId",id);
 			c.setMaxAge(60*60*24*7);
@@ -50,7 +50,7 @@ public class MemberLoginServlet extends HttpServlet {
 		
 		Member loginMember=new MemberService().selectByUserIdAndPw(id,pwd);
 		request.setAttribute("member", loginMember);
-		System.out.println(loginMember);
+//		System.out.println(loginMember);
 		if(loginMember!=null) {
 			//로그인 정보 저장
 			HttpSession session=request.getSession();

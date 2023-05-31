@@ -6,3 +6,5 @@
 		&lt;Copyright 2023. <strong>BScompany</strong> All right Reserved.&gt;
 	</p>
 </footer>
+</body>
+</html>

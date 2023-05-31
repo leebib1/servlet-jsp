@@ -14,6 +14,14 @@
 		}
 	}
 %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hello MVC</title>
+
+</head>
+<body>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.7.0.min.js"></script>
 <header>
@@ -65,6 +73,9 @@
 			<li class="home"><a href="">Home</a></li>
 			<li id="notice"><a href="">공지사항</a></li>
 			<li id="board"><a href="">게시판</a></li>
+			<% if(loginMember!=null&&loginMember.getUserId().equals("admin")){ %>
+			<li id="member"><a href="<%=request.getContextPath()%>/admin/memberList.do">회원관리</a></li>
+			<%} %>
 		</ul>
 	</nav>
 </header>

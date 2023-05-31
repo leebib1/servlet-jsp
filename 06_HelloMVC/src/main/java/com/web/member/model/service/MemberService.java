@@ -2,6 +2,7 @@ package com.web.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.web.member.dao.MemberDao;
 import com.web.member.model.dto.Member;
@@ -50,4 +51,6 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+
+
 }
