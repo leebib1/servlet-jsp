@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Servlet Filter implementation class PasswordEncriptoFilter
  */
-@WebFilter(urlPatterns = { "/member/*"}, servletNames = {"login"})
+@WebFilter(urlPatterns = { "/member/*"}, servletNames = {"login","updatePwd"})
 public class PasswordEncryptoFilter extends HttpFilter implements Filter {
        
 

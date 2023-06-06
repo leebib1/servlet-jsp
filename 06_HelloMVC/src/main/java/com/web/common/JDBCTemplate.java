@@ -1,4 +1,4 @@
-package com.web.member.common;
+package com.web.common;
 
 import java.io.FileReader;
 import java.sql.Connection;

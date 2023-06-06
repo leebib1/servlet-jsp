@@ -1,12 +1,12 @@
 package com.web.admin.model.dao;
 
+import static com.web.common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.util.List;
 
 import com.web.admin.model.service.AdminDao;
 import com.web.member.model.dto.Member;
-
-import static com.web.member.common.JDBCTemplate.*;
 
 public class AdminService {
 	private AdminDao dao=new AdminDao();

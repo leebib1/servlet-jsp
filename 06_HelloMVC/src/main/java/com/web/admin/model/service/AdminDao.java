@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.web.member.common.AESEncryptor;
+import com.web.common.AESEncryptor;
 import com.web.member.model.dto.Member;
+
+import static com.web.common.JDBCTemplate.*;
 import static com.web.member.dao.MemberDao.getMember;
-import static com.web.member.common.JDBCTemplate.*;
 
 public class AdminDao {
 	private final Properties sql=new Properties();

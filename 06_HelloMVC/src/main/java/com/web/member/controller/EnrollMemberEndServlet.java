@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.web.member.common.AESEncryptor;
+import com.web.common.AESEncryptor;
 import com.web.member.model.dto.Member;
 import com.web.member.model.service.MemberService;
 
@@ -40,8 +40,13 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		.address(request.getParameter("address"))
 		.hobby(request.getParameterValues("hobby"))
 		.build();
+		//회원 가입 데이터 중 대칭키 암호화 시킬 데이터들
 		try {
 			m.setEmail(AESEncryptor.encryptData(m.getEmail()));
+		}catch(Exception e) {
+			System.out.println("암호화 실패했습니다.");
+		}
+		try {
 			m.setPhone(AESEncryptor.encryptData(m.getPhone()));
 		}catch(Exception e) {
 			System.out.println("암호화 실패했습니다.");

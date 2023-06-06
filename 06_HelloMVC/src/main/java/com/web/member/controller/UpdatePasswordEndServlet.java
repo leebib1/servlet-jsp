@@ -14,7 +14,7 @@ import com.web.member.model.service.MemberService;
 /**
  * Servlet implementation class UpdatePasswordEndServlet
  */
-@WebServlet("/updatePasswordEnd")
+@WebServlet(name="updatePwd",urlPatterns = "/updatePasswordEnd")
 public class UpdatePasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

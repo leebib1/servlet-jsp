@@ -1,5 +1,7 @@
 package com.web.member.dao;
 
+import static com.web.common.JDBCTemplate.*;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +14,6 @@ import java.util.List;
 import java.util.Properties;
 
 import com.web.member.model.dto.Member;
-import static com.web.member.common.JDBCTemplate.*;
 
 public class MemberDao {
 	private final Properties sql=new Properties();

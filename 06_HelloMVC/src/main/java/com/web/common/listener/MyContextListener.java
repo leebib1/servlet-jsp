@@ -4,7 +4,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import com.web.member.common.AESEncryptor;
+import com.web.common.AESEncryptor;
 
 /**
  * Application Lifecycle Listener implementation class MyContextListener

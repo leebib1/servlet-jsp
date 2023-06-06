@@ -1,13 +1,13 @@
 package com.web.member.model.service;
 
+import static com.web.common.JDBCTemplate.*;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import com.web.member.dao.MemberDao;
 import com.web.member.model.dto.Member;
-
-import static com.web.member.common.JDBCTemplate.*;
 
 public class MemberService {
 	private MemberDao dao=new MemberDao();
