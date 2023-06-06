@@ -57,6 +57,7 @@ public class NoticeDao {
 		return noticelist;
 	}
 	
+	//게시글 본문 조회
 	public Notice selectNoticeContent(Connection conn, int noticeNo) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -75,6 +76,26 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		return n;
+	}
+
+	//공지사항 게시글 작성
+	public int insertNotice(Connection conn, Notice notice) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("insertNotice"));
+			//INSERT INTO NOTICE VALUES(SEQ_NOTICE_NO.NEXTVAL,?,?,?,DEFAULT,NULL,DEFAULT)
+			pstmt.setString(1, notice.getNoticeTitle());
+			pstmt.setString(2, notice.getNoticeWriter());
+			pstmt.setString(3, notice.getNoticeContent());
+			result=pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 	

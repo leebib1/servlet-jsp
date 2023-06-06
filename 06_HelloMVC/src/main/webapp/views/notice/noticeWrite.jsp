@@ -1,32 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+<% 
+	//loginMember는 header.jsp에 선언되어있음
+	String loginId="";
+	if(loginMember!=null){
+		loginId=loginMember.getUserId(); 
+	}
+%>
 <div id="notice-container">
-	<form action="" method="post">
+	<form action="<%=request.getContextPath() %>/notice/noticewrite.do" method="post">
 		<table id="tbl-notice">
 			<tr>
 				<th>제 목</th>
-				<td>반드시 작성되야함.</td>
+				<td><input type="text" name="notice_title" id="noticeTitle" placeholder="제목을 입력하세요."></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td>반드시 있어야하고 로그인한 사용자 아이디가 들어가야함. 작성못하게!</td>
+				<td><input type="text" value="<%=loginId %>" readonly></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td>파일을 입력받아야함</td>
+				<td><input type="file" multiple></td>
 			</tr>
 			<tr>
 				<th>내 용</th>
-				<td></td>
+				<td><textarea name="notice_content" cols="50" rows="10"></textarea></td>
 			</tr>
 			<tr>
-				<th colspan="2"><input type="submit" value="등록하기" onclick="">
+				<th colspan="2"><input type="submit" value="등록하기" onclick="return fn_titleCheck();">
 				</th>
 			</tr>
 		</table>
 	</form>
 </div>
+<script>
+	function fn_titleCheck(){
+		const title=$(".noticeTitle").val();
+		if(title.length==0){
+			title.focus();
+			alert("제목은 필수로 입력해야합니다.");
+			return false;
+		}
+	}
+</script>
 <%@ include file="/views/common/footer.jsp"%>
 
 <style>
