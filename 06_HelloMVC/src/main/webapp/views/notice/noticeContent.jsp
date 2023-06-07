@@ -3,10 +3,15 @@
 <%@ page import="com.web.notice.dto.Notice, java.util.List" %>
 <%@ include file="/views/common/header.jsp"%>
 <% Notice n=(Notice)request.getAttribute("notice");
-	String loginId=((Member)session.getAttribute("loginMember")).getUserId();%>
+	Member m=(Member)session.getAttribute("loginMember");
+	String loginId="";
+	if(m!=null){
+		loginId=m.getUserId();
+	}
+	%>
 <div id="notice-container">
 	<table id="tbl-notice">
-	<%if(n!=null&&n.getNoticeWriter().equals(loginId)){
+	<%if(n!=null&&loginId!=null){
 		%>
 		<tr>
 			<th>제 목</th>
@@ -24,10 +29,12 @@
 			<th>내 용</th>
 			<td><%=n.getNoticeContent() %></td>
 		</tr>
-		<tr>
-			<th colspan="2"><input type="button" value="수정하기" onclick="">
-				<input type="button" value="삭제하기" onclick=""></th>
-		</tr>
+			<% if(n.getNoticeWriter().equals(loginId)){ %>
+			<tr>
+				<th colspan="2"><input type="button" value="수정하기" onclick="">
+					<input type="button" value="삭제하기" onclick=""></th>
+			</tr>
+			<%}%>
 		<%}else{%>
 		<tr><td colspan="4">조회된 데이터가 없습니다.</td></tr>
 		<%}%>

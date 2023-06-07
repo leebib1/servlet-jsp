@@ -4,13 +4,18 @@
 <%@ include file="/views/common/header.jsp"%>
 <%
 	List<Notice> noticelist=(List)request.getAttribute("noticelist");
-
+	String loginId="";
+	if(loginMember!=null){
+		loginId=loginMember.getUserId(); 
+	}
 %>
 <section id="notice-container">
 	<h2>공지사항</h2>
+	<% if(loginId.equals("admin")){ %>
+		<button onclick="location.href='<%=request.getContextPath() %>/notice/noticewrite.do'">글 작성</button>
+	<% }%>
 	<table id="tbl-notice">
 		<tr>
-
 			<th>번호</th>
 			<th>제목</th>
 			<th>작성자</th>

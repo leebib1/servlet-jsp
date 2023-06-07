@@ -14,12 +14,12 @@ import com.web.notice.model.service.NoticeService;
 /**
  * Servlet implementation class NoticeWriteServlet
  */
-@WebServlet("/notice/noticewrite.do")
-public class NoticeWriteServlet extends HttpServlet {
+@WebServlet("/notice/noticewriteend.do")
+public class NoticeWriteEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public NoticeWriteServlet() {
+    public NoticeWriteEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

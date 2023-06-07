@@ -9,7 +9,7 @@
 	}
 %>
 <div id="notice-container">
-	<form action="<%=request.getContextPath() %>/notice/noticewrite.do" method="post">
+	<form action="<%=request.getContextPath() %>/notice/noticewriteend.do" method="post">
 		<table id="tbl-notice">
 			<tr>
 				<th>제 목</th>
@@ -17,7 +17,7 @@
 			</tr>
 			<tr>
 				<th>작성자</th>
-				<td><input type="text" value="<%=loginId %>" readonly></td>
+				<td><input type="text" name="notice_writer" value="<%=loginId %>" readonly></td>
 			</tr>
 			<tr>
 				<th>첨부파일</th>

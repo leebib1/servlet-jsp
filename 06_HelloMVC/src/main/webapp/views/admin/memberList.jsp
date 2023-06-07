@@ -133,11 +133,14 @@ section#memberList-container table#tbl-member th, table#tbl-member td {
 	</div>
 </section>
 <script type="text/javascript">
+	//검색 타입 변경하는 메소드
 	$("#searchType").change(e=>{
 		const type=$(e.target).val();
 		$(e.target).parent().find("div").css("display","none");
 		$("#search-"+type).css("display","inline-block");
 	});
+	
+	
 </script>
 <%@ include file="/views/common/footer.jsp" %>
 </body>
