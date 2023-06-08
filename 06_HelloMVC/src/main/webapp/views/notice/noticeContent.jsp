@@ -24,7 +24,11 @@
 		</tr>
 		<tr>
 			<th>첨부파일</th>
-			<td><%=n.getFilepath()!=null?n.getFilepath():"" %></td>
+			<td>
+				<% if(n.getFilepath()!=null){ %>
+						<img src="<%=request.getContextPath() %>/images/file.png" width="20">
+				<%} %>
+			</td>
 		</tr>
 		<tr>
 			<th>내 용</th>

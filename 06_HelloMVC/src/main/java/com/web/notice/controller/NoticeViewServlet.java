@@ -15,11 +15,11 @@ import com.web.notice.model.service.NoticeService;
 
 
 @WebServlet("/notice/noticeview.do")
-public class noticeViewServlet extends HttpServlet {
+public class NoticeViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public noticeViewServlet() {
+    public NoticeViewServlet() {
     }
 
 	//공지사항 조회 서블릿
