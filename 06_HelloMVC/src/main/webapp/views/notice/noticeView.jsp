@@ -11,9 +11,11 @@
 %>
 <section id="notice-container">
 	<h2>공지사항</h2>
+	<div>
 	<% if(loginId.equals("admin")){ %>
 		<button onclick="location.href='<%=request.getContextPath() %>/notice/noticewrite.do'">글 작성</button>
 	<% }%>
+	</div>
 	<table id="tbl-notice">
 		<tr>
 			<th>번호</th>
@@ -33,15 +35,22 @@
 				<%=n.getNoticeTitle() %>
 				</td>
 				<td><%=n.getNoticeWriter() %></td>
-				<td><%=n.getFilepath() %></td>
+				<td>
+					<% if(n.getFilepath()!=null){ %>
+						<img src="<%=request.getContextPath() %>/images/file.png" width="20">
+					<%} %>
+				</td>
 				<td><%=n.getNoticeDate() %></td>
 			</tr>
 		<%	}
 		}else{ %>
-			<tr><td colspan="9">출력될 데이터가 없습니다</td></tr>
+			<tr><td colspan="5">출력될 데이터가 없습니다</td></tr>
 		<%}
 		%>
 	</table>
+	<div id="pageBar">
+		<%=request.getAttribute("pageBar") %>
+	</div>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
 
@@ -68,5 +77,10 @@ table#tbl-notice th, table#tbl-notice td {
 	border: 1px solid;
 	padding: 5px 0;
 	text-align: center;
+}
+
+section#notice-container>div:first-of-type{
+	display: flex;
+	justify-content: right;
 }
 </style>

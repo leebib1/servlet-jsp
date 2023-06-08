@@ -37,7 +37,7 @@ public class MemberListServlet extends HttpServlet {
 		try {
 			numPerpage=Integer.parseInt(request.getParameter("numPerpage"));
 		}catch(NumberFormatException e) {
-				numPerpage=10;
+			numPerpage=10;
 		}
 		List<Member> memberList=new AdminService().selectMembers(cPage,numPerpage);
 		request.setAttribute("memberList", memberList);

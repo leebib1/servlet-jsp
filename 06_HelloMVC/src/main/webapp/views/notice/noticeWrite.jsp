@@ -9,7 +9,8 @@
 	}
 %>
 <div id="notice-container">
-	<form action="<%=request.getContextPath() %>/notice/noticewriteend.do" method="post">
+	<!-- form안에 file형식 데이터를 전송하는 경우 method="post" enctype="multipart/form-data"를 지정해줘야한다. -->
+	<form action="<%=request.getContextPath() %>/notice/noticewriteend.do" method="post" enctype="multipart/form-data">
 		<table id="tbl-notice">
 			<tr>
 				<th>제 목</th>
@@ -21,7 +22,7 @@
 			</tr>
 			<tr>
 				<th>첨부파일</th>
-				<td><input type="file" multiple></td>
+				<td><input type="file" name="notice_file" multiple></td>
 			</tr>
 			<tr>
 				<th>내 용</th>

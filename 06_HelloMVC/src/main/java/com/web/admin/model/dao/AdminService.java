@@ -22,4 +22,16 @@ public class AdminService {
 		close(conn);
 		return result;
 	}
+	public List<Member> selectMemberByKeyword(String type, String keyword, int cPage, int numPerpage) {
+		Connection conn=getConnection();
+		List<Member> members=dao.selectMemberByKeyword(conn, type, keyword, cPage, numPerpage);
+		close(conn);
+		return members;
+	}
+	public int selectMemberByKeywordCount(String type, String keyword) {
+		Connection conn=getConnection();
+		int count=dao.selectMemberByKeywordCount(conn, type, keyword);
+		close(conn);
+		return count;
+	}
 }

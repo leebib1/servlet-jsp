@@ -38,12 +38,15 @@ public class NoticeDao {
 	}
 	
 	//공지사항 데이터 전체를 조회하는 메소드
-	public List<Notice> selectNotices(Connection conn) {
+	public List<Notice> selectNotices(Connection conn, int cPage, int numPerpage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<Notice> noticelist=new ArrayList();
 		try {
 			pstmt=conn.prepareStatement(sql.getProperty("selectnotices"));
+			//SELECT * FROM (SELECT ROWNUM AS RNUM, N.* FROM (SELECT * FROM NOTICE)N) WHERE RNUM BETWEEN ? AND ?
+			pstmt.setInt(1, (cPage-1)*numPerpage+1);
+			pstmt.setInt(2, cPage*numPerpage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				noticelist.add(getNotice(rs));
@@ -88,6 +91,7 @@ public class NoticeDao {
 			pstmt.setString(1, notice.getNoticeTitle());
 			pstmt.setString(2, notice.getNoticeWriter());
 			pstmt.setString(3, notice.getNoticeContent());
+			pstmt.setString(4, notice.getFilepath());
 			result=pstmt.executeUpdate();
 			
 		}catch(SQLException e) {
@@ -96,6 +100,25 @@ public class NoticeDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int selectNoticeCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int count=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("selectNoticeCount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return count;
 	}
 	
 	

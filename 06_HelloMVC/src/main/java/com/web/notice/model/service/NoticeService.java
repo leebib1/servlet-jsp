@@ -9,14 +9,16 @@ import com.web.notice.dto.Notice;
 import static com.web.common.JDBCTemplate.*;
 public class NoticeService {
 	private NoticeDao dao=new NoticeDao();
-
-	public List<Notice> selectNotices() {
+	
+	//공지사항 글 전체 조회
+	public List<Notice> selectNotices(int cPage, int numPerpage) {
 		Connection conn=getConnection();
-		List<Notice> noticelist=dao.selectNotices(conn);
+		List<Notice> noticelist=dao.selectNotices(conn, cPage, numPerpage);
 		close(conn);
 		return noticelist;
 	}
 
+	//공지사항 글 내용 조회
 	public Notice selectNoticeContent(int noticeNo) {
 		Connection conn=getConnection();
 		Notice n=dao.selectNoticeContent(conn, noticeNo);
@@ -24,6 +26,7 @@ public class NoticeService {
 		return n;
 	}
 
+	//공지사항 게시글 추가
 	public int insertNotice(Notice notice) {
 		Connection conn=getConnection();
 		int result=dao.insertNotice(conn, notice);
@@ -31,6 +34,14 @@ public class NoticeService {
 		else rollback(conn);
 		close(conn);
 		return result;
+	}
+
+	//공지사항 글 갯수
+	public int selectNoticeCount() {
+		Connection conn=getConnection();
+		int count=dao.selectNoticeCount(conn);
+		close(conn);
+		return count;
 	}
 	
 }

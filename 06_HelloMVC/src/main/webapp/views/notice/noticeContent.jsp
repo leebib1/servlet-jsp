@@ -10,6 +10,7 @@
 	}
 	%>
 <div id="notice-container">
+	<h2>공지사항 상세화면</h2>
 	<table id="tbl-notice">
 	<%if(n!=null&&loginId!=null){
 		%>

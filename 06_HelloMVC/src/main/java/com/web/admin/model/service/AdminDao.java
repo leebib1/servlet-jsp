@@ -84,6 +84,71 @@ public class AdminDao {
 		}
 		return result;
 	}
+
+	//키워드로 멤버 조회
+	public List<Member> selectMemberByKeyword(Connection conn, String type, String keyword, int cPage, int numPerpage) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Member> members=new ArrayList();
+		String query=sql.getProperty("selectMemberByKeyword");
+		query=query.replaceAll("#type", type);
+		try {
+			pstmt = conn.prepareStatement(query);
+			// SELECT * FROM MEMBER WHERE #type LIKE ?
+			//gender일때는 그대로 집어넣고 나머지는 부분검색 되게 분기처리
+			pstmt.setString(1, type.equals("gender")?keyword:"%" + keyword + "%");
+			//페이징 처리한 SQL 구문
+			//SELECT * FROM (SELECT ROWNUM AS RNUM, M.* FROM (SELECT * FROM MEMBER WHERE #type LIKE ?) M) WHERE RNUM BETWEEN ? AND ?
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				members.add(getMember(rs));
+			}
+			for (Member m : members) {
+				try {
+					m.setEmail(AESEncryptor.decryptData(m.getEmail()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				try {
+					m.setPhone(AESEncryptor.decryptData(m.getPhone()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return members;
+	}
+
+	//조회된 컬럼 수
+	public int selectMemberByKeywordCount(Connection conn, String type, String keyword) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String query=sql.getProperty("selectMemberByKeywordCount").replaceAll("#type", type);
+		//SELECT COUNT(*) FROM MEMBER WHERE #type LIKE ?
+		try {
+			pstmt=conn.prepareStatement(query);
+			pstmt.setString(1, type.equals("gender")?keyword:"%" + keyword + "%");
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return result;
+	}
 	
 
 }
