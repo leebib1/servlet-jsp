@@ -19,8 +19,7 @@ public class BoardListServlet extends HttpServlet {
 	public BoardListServlet() {
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// paging
 		int cPage, numPerpage;
 		try {
@@ -28,7 +27,7 @@ public class BoardListServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			cPage = 1;
 		}
-		numPerpage = 5;
+		numPerpage = 10;
 		String pageBar = "";
 		int totalData = new BoardService().selectBoardCount();
 		int totalPage = (int) Math.ceil((double) totalData / numPerpage);

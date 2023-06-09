@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.web.board.dto.Board;
 import com.web.board.model.service.BoardService;
 
@@ -24,10 +28,25 @@ public class BoardWriteEndServlet extends HttpServlet {
 
 	//게시글 작성 서블릿
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Board b=Board.builder().boardTitle(request.getParameter("board_title"))
-				.boardWriter(request.getParameter("board_writer"))
-				.boardOriginalFileName(request.getParameter("board_file"))
-				.boardContent(request.getParameter("board_content")).build();
+		//타입 확인
+		if(!(ServletFileUpload.isMultipartContent(request))) {
+			request.setAttribute("msg", "잘못된 접근입니다. 관리자에게 문의하세요.");
+			request.setAttribute("loc", "/");
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			return;
+		}
+		String path=getServletContext().getRealPath("/upload/board");
+		int maxSize=1024*1024*200; //200MB
+		String encode="UTF-8";
+		DefaultFileRenamePolicy dfr=new DefaultFileRenamePolicy();
+		MultipartRequest mr=new MultipartRequest(request, path, maxSize, encode, dfr);
+		String renamedFileName=mr.getFilesystemName(mr.getParameter("board_file"));
+		
+		Board b=Board.builder().boardTitle(mr.getParameter("board_title"))
+				.boardWriter(mr.getParameter("board_writer"))
+				.boardOriginalFileName(mr.getOriginalFileName("board_file"))
+				.boardRenamedFileName(renamedFileName)
+				.boardContent(mr.getParameter("board_content")).build();
 		int result=new BoardService().insertBoard(b);
 		String msg, loc;
 		if(result>0) {

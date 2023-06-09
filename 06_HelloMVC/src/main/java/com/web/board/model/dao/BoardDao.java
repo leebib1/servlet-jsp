@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.web.board.dto.Board;
+import com.web.board.dto.BoardComment;
 import com.web.notice.dao.NoticeDao;
 
 public class BoardDao {
@@ -120,6 +121,74 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public int updateBoardReadCount(Connection conn, Board b) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("updateBoardReadCount"));
+			//UPDATE NOTICE SET BOARD_READCOUNT=BOARD_READCOUNT+1 WHERE BOARD_NO=?
+			pstmt.setInt(1, b.getBoardNo());
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertBoardComment(Connection conn, BoardComment bc) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("insertBoardComment"));
+			//INSERT INTO BOARD_COMMENT VALUES(SEQ_BOARD_COMMENT_NO.NEXTVAL,?,?,?,?,?,DEFAULT)
+			pstmt.setInt(1, bc.getLevel());
+			pstmt.setString(2, bc.getBoardCommentWriter());
+			pstmt.setString(3, bc.getBoardCommentContent());
+			pstmt.setInt(4, bc.getBoardRef());
+			pstmt.setString(5, bc.getBoardCemmnetRef()==0?null:String.valueOf(bc.getBoardCemmnetRef()));
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<BoardComment> selectBoardCommentList(Connection conn, int boardNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<BoardComment> comments=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(sql.getProperty("selectBoardCommentList"));
+			//SELECT * FROM BOARD_COMMENT WHERE BOARD_REF=?
+			pstmt.setInt(1, boardNo);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				comments.add(getBoardComment(rs));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return comments;
+	}
+	
+	private BoardComment getBoardComment(ResultSet rs) throws SQLException{
+		return BoardComment.builder().boardCommentNo(rs.getInt("board_comment_no"))
+				.level(rs.getInt("board_comment_level"))
+				.boardCommentWriter(rs.getString("board_comment_writer"))
+				.boardCommentContent(rs.getString("board_comment_content"))
+				.boardRef(rs.getInt("board_ref"))
+				.boardCemmnetRef(rs.getInt("board_comment_ref"))
+				.boardCommentDate(rs.getDate("board_comment_date"))
+				.build();
 	}
 
 }

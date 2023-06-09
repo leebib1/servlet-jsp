@@ -42,7 +42,7 @@ table#tbl-board td {
 
 <div id='board-container'>
 	<h2>게시판 작성</h2>
-	<form action='<%=request.getContextPath()%>/board/boardwriteEnd'>
+	<form action='<%=request.getContextPath()%>/board/boardwriteEnd' method="post" enctype="multipart/form-data">
 		<table id='tbl-board'>
 			<tr>
 				<th>제목</th>

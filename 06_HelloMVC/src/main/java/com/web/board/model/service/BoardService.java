@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.web.board.dto.Board;
+import com.web.board.dto.BoardComment;
 import com.web.board.model.dao.BoardDao;
 
 import static com.web.common.JDBCTemplate.*;
@@ -28,9 +29,18 @@ public class BoardService {
 	}
 
 	//게시글 상세 조회
-	public Board selectBoardContent(int boardNo) {
+	public Board selectBoardContent(int boardNo, boolean isRead) {
 		Connection conn=getConnection();
 		Board b=dao.selectBoardContent(conn, boardNo);
+		//게시글이 지워진 경우 분기처리
+		if(b!=null&&!isRead) {
+			int result=dao.updateBoardReadCount(conn, b);
+			if(result==1) {
+				commit(conn);
+				b.setBoardReadConut(b.getBoardReadConut()+1);
+			}
+			else rollback(conn);
+		}
 		close(conn);
 		return b;
 	}
@@ -42,5 +52,21 @@ public class BoardService {
 		else rollback(conn);
 		return result;
 	}
+
+	public int insertBoardComment(BoardComment bc) {
+		Connection conn=getConnection();
+		int result=dao.insertBoardComment(conn, bc);
+		if(result==1) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+
+	public List<BoardComment> selectBoardComment(int boardNo) {
+		Connection conn=getConnection();
+		List<BoardComment> comments=dao.selectBoardCommentList(conn, boardNo);
+		close(conn);
+		return comments;
+	}
+
 
 }

@@ -26,7 +26,10 @@
 			<th>첨부파일</th>
 			<td>
 				<% if(n.getFilepath()!=null){ %>
+					<div class="download_container" onclick="fileDownload('<%=n.getFilepath() %>');">
 						<img src="<%=request.getContextPath() %>/images/file.png" width="20">
+						<%=n.getFilepath() %>
+					</div>
 				<%} %>
 			</td>
 		</tr>
@@ -46,10 +49,18 @@
 	</table>
 </div>
 <%@ include file="/views/common/footer.jsp"%>
-
+<script>
+	const fileDownload=(filename)=>{
+		/* alert("파일 다운로드"); */
+		location.assign("<%=request.getContextPath()%>/fileDownload.do?filename="+filename);
+	}
+</script>
 <!-- 스타일추가 -->
 
 <style>
+div.download_container{
+	cursor: pointer;
+}
 section#notice-container {
 	width: 600px;
 	margin: 0 auto;

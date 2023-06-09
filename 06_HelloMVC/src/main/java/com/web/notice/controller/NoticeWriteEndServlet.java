@@ -55,7 +55,7 @@ public class NoticeWriteEndServlet extends HttpServlet {
 		//ServletContext 객체를 이용해서 웹 어플리케이션의 절대 경로를 가져올 수 있다.
 		//getServletContext().getRealPath("/") : webapp까지의 경로를 가져온다.
 		String path=getServletContext().getRealPath("/upload/notice");
-		System.out.println(path);
+//		System.out.println(path);
 		
 		//최대 파일 크기 지정
 		int maxSize=1024*1024*100; //100MB
