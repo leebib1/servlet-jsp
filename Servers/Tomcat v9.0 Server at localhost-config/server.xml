@@ -162,7 +162,7 @@
 
       
       
-      <Context docBase="06_HelloMVC" path="/06_HelloMVC" reloadable="true" source="org.eclipse.jst.jee.server:06_HelloMVC"/></Host>
+      <Context docBase="07_ajax" path="/07_ajax" reloadable="true" source="org.eclipse.jst.jee.server:07_ajax"/><Context docBase="06_HelloMVC" path="/06_HelloMVC" reloadable="true" source="org.eclipse.jst.jee.server:06_HelloMVC"/></Host>
     </Engine>
   </Service>
 </Server>
