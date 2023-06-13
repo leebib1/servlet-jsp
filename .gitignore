@@ -1,5 +1,5 @@
 /.metadata/
-*.propertices
+*.properties
 *.key
 /Servers/
 *.classpath
