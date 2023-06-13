@@ -82,7 +82,8 @@
 	</script>
 	<table id="tbl-comment">
 	<% if(comments!=null){
-		for(BoardComment bc:comments){%>
+		for(BoardComment bc:comments){
+			if(bc.getLevel()==1){%>
 		<tr class="level">
 			<td>
 				<sub class="comment-writer"><%=bc.getBoardCommentWriter()%></sub>
@@ -90,21 +91,47 @@
 				<%=bc.getBoardCommentContent()%>
 			</td>
 			<td>
-				<button class="btn-reply">답글</button>
+				<%if(loginMember!=null){ %>
+				<button class="btn-reply" value="<%=bc.getBoardCommentNo()%>">답글</button>
+				<%} %>
 				<%if(loginId.equals("admin")||loginId.equals(bc.getBoardCommentWriter())){ %>
-				<button class="btn-reply">수정</button>
-				<button class="btn-reply">삭제</button>
+				<button class="btn-update">수정</button>
+				<button class="btn-delete">삭제</button>
 				<%} %>
 			</td>
 		</tr>
-	<%
+			<%}else{ %>
+				<tr class="level">
+					<td>
+						<sub class="comment-writer"><%=bc.getBoardCommentWriter()%></sub>
+						<sub class="comment-date"><%=bc.getBoardCommentDate()%></sub><br>
+						<%=bc.getBoardCommentContent()%>
+					</td>
+				</tr>
+		<%		}
+			}
 		}
-	}
-	%>
+		%>
 	</table>
-	
 </section>
-	<style>
+<script>
+	$(".btn-reply").click(e=>{
+		const tr=$("<tr>");
+		const td=$("<td>");
+		const boardCommentRef=$(e.target).val();
+		const form=$(".comment-editor>form").clone();
+		form.find("textarea").attr("row","1");
+		form.find("input[name=level]").val(2);
+		form.find("input[name=boardCommentRef]").val(boardCommentRef);
+		td.css("display","none");
+		td.append(form);
+		tr.append(td);
+		//$(e.target).parents("tr").after(tr);
+		tr.insertAfter($(e.target).parents("tr")).children("td").slideDown(800);
+		$(e.target).off("click");
+	});
+	</script>
+<style>
 section#board-container {
 	width: 600px;
 	margin: 0 auto;
