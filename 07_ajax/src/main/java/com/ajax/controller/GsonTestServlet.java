@@ -43,6 +43,10 @@ public class GsonTestServlet extends HttpServlet {
 		//m을 key값으로 사용한다.
 		gson.toJson(list,response.getWriter());
 		
+		//gson.fromJson(); 을 이용하면 vo 객체로 만들어준다.
+		String data=request.getParameter("data");
+		Member requestData=gson.fromJson(data, Member.class); //반환형은 해당 객체
+		System.out.println(requestData);
 		
 	}
 

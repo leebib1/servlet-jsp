@@ -50,9 +50,28 @@
 			});
 		});
 		$("#gsonBtn").click(e=>{
-			$.get("<%=request.getContextPath()%>/gsontest.do",
+			//url 주소에 넣어서 보낼 수 없기 때문에 body에 데이터를 넣어서 보낸다
+			<%-- $.get("<%=request.getContextPath()%>/gsontest.do",
 					data=>{
-						console.log(data);	
+						console.log(data);
+					}); --%>
+			$.post("<%=request.getContextPath()%>/gsontest.do",
+					//JSON.stringify : JSON 문자열로 변환해줌
+					{data:JSON.stringify({
+						//key 값이 파싱할 vo객체의 멤버변수 명과 동일해야함
+						userId:"bsyoo",
+						password:"1234",
+						userName:"유병승",
+						gender:"M",
+						age:19,
+						email:"afe@adf.com",
+						phone:"1234",
+						address:"경기도 시흥시",
+						//날짜 형식을 그대로 작성해야한다.
+						enrollDate:"20230614"
+					})},
+					data=>{
+						
 					});
 		});
 	</script>
