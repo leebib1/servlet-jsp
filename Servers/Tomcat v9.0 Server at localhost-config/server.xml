@@ -162,7 +162,7 @@
 
       
       
-      <Context docBase="07_ajax" path="/07_ajax" reloadable="true" source="org.eclipse.jst.jee.server:07_ajax"/><Context docBase="08_websocket" path="/08_websocket" reloadable="true" source="org.eclipse.jst.jee.server:08_websocket"/></Host>
+      <Context docBase="07_ajax" path="/07_ajax" reloadable="true" source="org.eclipse.jst.jee.server:07_ajax"/><Context docBase="08_websocket" path="/08_websocket" reloadable="true" source="org.eclipse.jst.jee.server:08_websocket"/><Context docBase="09_EL_JSTL" path="/09_EL_JSTL" reloadable="true" source="org.eclipse.jst.jee.server:09_EL_JSTL"/></Host>
     </Engine>
   </Service>
 </Server>
